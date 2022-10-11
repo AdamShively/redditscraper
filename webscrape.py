@@ -45,11 +45,11 @@ print(content) #print content that is to be sent in the email
 print('Composing Email...')
 
 # add info
-SERVER = 'smtp.gmail.com' # "your smtp server"
+SERVER = '' # "your smtp server"
 PORT = 587 # your port number
-FROM =  'adammshively89@gmail.com' # "your from email id"
-TO = 'adammshively89@gmail.com' # "your to email id(s)"
-PASS = 'ujyhmmswpkgbgkip' # "your email id password"
+FROM =  '' # "your from email id"
+TO = '' # "your to email id(s)"
+PASS = '' # "your email id password"
 
 # Create a message
 msg = MIMEMultipart()
