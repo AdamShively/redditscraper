@@ -53,7 +53,7 @@ PASS = '' # "your email id password"
 
 # Create a message
 msg = MIMEMultipart()
-msg['Subject'] = f'Today\'s Top Growing Communities [Automated Email] {now.day}-{now.month}-{now.year}'
+msg['Subject'] = f'Today\'s Top Growing Communities [Automated Email] {now.month}-{now.day}-{now.year}'
 msg['From'] = FROM
 msg['To'] = TO
 
