@@ -10,6 +10,11 @@ from email.mime.text import MIMEText
 
 import datetime #date and time
 
+import os
+from dotenv import load_dotenv #for environment variables
+
+load_dotenv() #load .env file
+
 now = datetime.datetime.now()
 
 # email content
@@ -22,7 +27,7 @@ def extract_category(url):
     print('Extracting From Reddit...')
     print(f'Url: {url}')
     cnt = ''
-    cnt += f'<b>Today\'s Top Growing Communities on <b style="color:red;">Reddit<span>:</b>\n'
+    cnt += f'<b>Today\'s Top Growing Communities on <b style="color:red;">Reddit:</b>\n'
     cnt += f'<br><span style="color:green;">{line}</span><br>'
     
     response = requests.get(url)
@@ -33,10 +38,10 @@ def extract_category(url):
         href = tag.get('href')
         cnt += f'{i}: <a href="https://www.reddit.com/{href}">{href[1:-1]}</a>\n <br>'
     return(cnt)
-    
+
 cnt = extract_category('https://www.reddit.com/subreddits/leaderboard/')
 content += cnt
-content += f'<br><b style="color:green;">{line}</b><br><br>'
+content += f'<br><span style="color:green;">{line}</span><br><br>'
 content +=('<br><br>End of Message')
 
 print(content) #print content that is to be sent in the email
@@ -45,11 +50,11 @@ print(content) #print content that is to be sent in the email
 print('Composing Email...')
 
 # add info
-SERVER = '' # "your smtp server"
-PORT = 587 # your port number
-FROM =  '' # "your from email id"
-TO = '' # "your to email id(s)"
-PASS = '' # "your email id password"
+SERVER = os.getenv('SERVER') # "your smtp server"
+PORT = os.getenv('PORT') # your port number
+FROM = os.getenv('FROM') # "your from email id"
+TO = os.getenv('TO') # "your to email id(s)"
+PASS = os.getenv('PASS') # "your email id password"
 
 # Create a message
 msg = MIMEMultipart()
